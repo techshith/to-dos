@@ -29,4 +29,17 @@ button:hover {
     background-color: #ffcc00;
     transform: scale(1.1);
 }
+
+@keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.5;
+    }
+}
+  
+.todo-list li.completed {
+    animation: fadeOut 0.5s ease-in-out;
+}
   
