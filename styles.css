@@ -1,54 +1,35 @@
-/* 🌟 Custom Styles for TodoMVC */
+/* General Page Styling */
 body {
     font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    text-align: center;
 }
 
-body {
-    background: #1e1e1e;
-    color: #800000;
-}
-
+/* Header Title "to-dos" */
 h1 {
-    color: #ffcc00;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+    color: #580000; /* Dark Rich Maroon */
+    font-size: 48px;
+    font-weight: bold;
+    text-transform: capitalize;
 }
 
+/* Todo Input Field - Keep Text Black */
 .new-todo {
-    background-color: #333;
-    color: #fff;
-    border: 1px solid #555;
-    padding: 10px;
-    font-size: 18px;
+    font-size: 24px;
+    color: black !important; /* Ensure input text remains black */
+    font-style: normal;
 }
 
-button {
-    transition: background-color 0.3s ease-in-out, transform 0.2s;
-}
-  
-button:hover {
-    background-color: #ffcc00;
-    transform: scale(1.1);
+/* Task List Items */
+.todo-list li {
+    font-size: 20px;
+    color: black; /* Ensure todo items remain black */
 }
 
-@keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0.5;
-    }
+/* Footer Text (Double-click & Created by) */
+.info p {
+    font-size: 18px; /* Bigger text */
+    font-weight: bold;
+    color: #333; /* Darker shade */
 }
-  
-.todo-list li.completed {
-    animation: fadeOut 0.5s ease-in-out;
-}
-
-.todoapp {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #222;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-}
-  
