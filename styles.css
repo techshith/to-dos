@@ -42,4 +42,13 @@ button:hover {
 .todo-list li.completed {
     animation: fadeOut 0.5s ease-in-out;
 }
+
+.todoapp {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
   
