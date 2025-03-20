@@ -18,13 +18,24 @@ class TodoApp extends React.Component<IAppProps, IAppState> {
 
   public state : IAppState;
 
-  constructor(props : IAppProps) {
+  constructor(props: IAppProps) {
     super(props);
+    
+    // Load todos from local storage
+    const savedTodos = localStorage.getItem("todos");
     this.state = {
-      nowShowing: ALL_TODOS,
-      editing: null
+        nowShowing: ALL_TODOS,
+        editing: null,
+        todos: savedTodos ? JSON.parse(savedTodos) : [],
     };
   }
+
+  componentDidUpdate(prevProps: IAppProps, prevState: IAppState) {
+    if (prevState.todos !== this.state.todos) {
+        localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    }
+  }
+
 
   public componentDidMount() {
     var setState = this.setState;
@@ -36,20 +47,26 @@ class TodoApp extends React.Component<IAppProps, IAppState> {
     router.init('/');
   }
 
-  public handleNewTodoKeyDown(event : React.KeyboardEvent) {
+  handleNewTodoKeyDown(event: React.KeyboardEvent) {
     if (event.keyCode !== ENTER_KEY) {
-      return;
-    }
+        return;
+      }
 
-    event.preventDefault();
+      event.preventDefault();
 
-    var val = (ReactDOM.findDOMNode(this.refs["newField"]) as HTMLInputElement).value.trim();
+      var val = (ReactDOM.findDOMNode(this.refs["newField"]) as HTMLInputElement).value.trim();
 
-    if (val) {
-      this.props.model.addTodo(val);
-      (ReactDOM.findDOMNode(this.refs["newField"]) as HTMLInputElement).value = '';
-    }
+      if (val) {
+        this.setState(
+            (prevState) => ({
+                todos: [...prevState.todos, { id: Date.now(), text: val, completed: false }],
+            } as Pick<IAppState, keyof IAppState>),
+            () => localStorage.setItem("todos", JSON.stringify(this.state.todos))
+          );
+          (ReactDOM.findDOMNode(this.refs["newField"]) as HTMLInputElement).value = '';
+      }
   }
+
 
   public toggleAll(event : React.FormEvent) {
     var target : any = event.target;
@@ -79,8 +96,14 @@ class TodoApp extends React.Component<IAppProps, IAppState> {
   }
 
   public clearCompleted() {
-    this.props.model.clearCompleted();
+    this.setState(
+        (prevState) => ({
+            todos: prevState.todos.filter(todo => !todo.completed),
+        } as Pick<IAppState, keyof IAppState>),
+        () => localStorage.setItem("todos", JSON.stringify(this.state.todos))
+    );
   }
+
 
   public render() {
     var footer;
