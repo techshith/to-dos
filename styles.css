@@ -20,4 +20,13 @@ h1 {
     padding: 10px;
     font-size: 18px;
 }
+
+button {
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+  
+button:hover {
+    background-color: #ffcc00;
+    transform: scale(1.1);
+}
   
