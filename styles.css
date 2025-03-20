@@ -1,5 +1,9 @@
 /* 🌟 Custom Styles for TodoMVC */
 body {
     font-family: 'Arial', sans-serif;
-  }
-  
+}
+
+body {
+    background: #1e1e1e;
+    color: #ffffff;
+}
